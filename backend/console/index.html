@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rental Car Agent — Owner Console</title>
+<style>
+  :root{--bg:#0f1420;--panel:#171e2e;--panel2:#1d2638;--line:#28324a;--txt:#e8edf7;--mut:#93a0b8;--acc:#4f8cff;--ok:#2fbf71;--warn:#f0a52e;--bad:#e5534b;--r:10px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font:14px/1.5 "Segoe UI",system-ui,sans-serif}
+  header{display:flex;align-items:center;gap:14px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+  header h1{font-size:16px;font-weight:600}
+  header .dot{width:9px;height:9px;border-radius:50%;background:var(--bad);display:inline-block;margin-right:6px}
+  header .dot.on{background:var(--ok)}
+  header .spacer{flex:1}
+  nav{display:flex;gap:4px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--panel);overflow-x:auto;position:sticky;top:49px;z-index:4}
+  nav button{background:none;border:1px solid transparent;color:var(--mut);padding:7px 13px;border-radius:8px;cursor:pointer;font-size:13px;white-space:nowrap}
+  nav button:hover{color:var(--txt)}
+  nav button.act{background:var(--panel2);color:var(--txt);border-color:var(--line)}
+  main{padding:18px 20px;max-width:1280px;margin:0 auto}
+  .grid{display:grid;gap:14px}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+  .card b{font-size:22px;display:block}
+  .card span{color:var(--mut);font-size:12px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px}
+  .panel h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:10px}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+  input,select,textarea{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:8px 10px;font:inherit;outline:none}
+  input:focus,textarea:focus{border-color:var(--acc)}
+  textarea{width:100%;resize:vertical;min-height:60px}
+  button.b{background:var(--acc);border:0;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit}
+  button.b.gray{background:var(--panel2);color:var(--txt);border:1px solid var(--line)}
+  button.b.red{background:var(--bad)}
+  button.b.green{background:var(--ok)}
+  button.b:disabled{opacity:.5;cursor:default}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--mut);font-weight:600;font-size:12px}
+  .pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;background:var(--panel2);border:1px solid var(--line)}
+  .pill.ok{color:var(--ok)}.pill.warn{color:var(--warn)}.pill.bad{color:var(--bad)}
+  .split{display:grid;grid-template-columns:320px 1fr;gap:14px}
+  @media(max-width:900px){.split{grid-template-columns:1fr}}
+  .list-item{padding:10px 12px;border:1px solid var(--line);border-radius:8px;margin-bottom:8px;cursor:pointer}
+  .list-item:hover,.list-item.act{border-color:var(--acc);background:var(--panel2)}
+  .list-item .t{font-size:13px;font-weight:600}
+  .list-item .s{font-size:12px;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .msg{max-width:75%;margin-bottom:10px;padding:9px 12px;border-radius:12px;font-size:13px;white-space:pre-wrap;word-break:break-word}
+  .msg.in{background:var(--panel2);border-top-left-radius:3px}
+  .msg.out{background:#21446e;margin-left:auto;border-top-right-radius:3px}
+  .msg.human{background:#3d2f56;margin-left:auto;border-top-right-radius:3px}
+  .msg .meta{font-size:10px;color:var(--mut);margin-top:4px}
+  .msg img{max-width:220px;border-radius:8px;display:block;margin-top:6px}
+  .chatbox{height:480px;overflow-y:auto;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+  .muted{color:var(--mut);font-size:12px}
+  .kv{display:grid;grid-template-columns:170px 1fr;gap:6px 12px;font-size:13px}
+  .kv div:nth-child(odd){color:var(--mut)}
+  pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;font-size:12px;overflow-x:auto;white-space:pre-wrap}
+  .sim-img{max-width:260px;border-radius:10px;margin:8px 0;display:block}
+  .hidden{display:none}
+  .toast{position:fixed;bottom:18px;right:18px;background:var(--panel2);border:1px solid var(--line);padding:10px 16px;border-radius:10px;font-size:13px;z-index:20;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+</style>
+</head>
+<body>
+<header>
+  <h1>🚗 Rental Car Agent</h1>
+  <span><span class="dot" id="runDot"></span><span id="runTxt" class="muted">…</span></span>
+  <span class="spacer"></span>
+  <span class="muted" id="clock"></span>
+  <button class="b gray" id="btnRun">Run</button>
+  <button class="b gray" id="btnPause">Pause</button>
+</header>
+<nav id="tabs">
+  <button data-t="dash" class="act">Dashboard</button>
+  <button data-t="inbox">Inbox</button>
+  <button data-t="sim">Simulator</button>
+  <button data-t="fleet">Fleet</button>
+  <button data-t="bookings">Bookings</button>
+  <button data-t="persona">Persona</button>
+  <button data-t="media">Media</button>
+  <button data-t="kb">Knowledge</button>
+  <button data-t="conn">Connection</button>
+</nav>
+<main>
+  <section id="t-dash">
+    <div class="grid cards" id="statCards"></div>
+    <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:14px">
+      <div class="panel"><h3>LLM failover chain</h3><div id="llmBox" class="muted">…</div></div>
+      <div class="panel"><h3>Intent mix (outbound)</h3><div id="intentBox" class="muted">—</div></div>
+    </div>
+  </section>
+
+  <section id="t-inbox" class="hidden">
+    <div class="split">
+      <div>
+        <div class="row"><input id="convQ" placeholder="Search…"><select id="convStatus"><option value="">all</option><option value="running">running</option><option value="paused">with staff</option></select></div>
+        <div id="convList"></div>
+      </div>
+      <div class="panel">
+        <div id="convHead" class="muted">Select a conversation</div>
+        <div class="chatbox" id="thread"></div>
+        <div class="row" style="margin-top:10px">
+          <select id="attachImg" style="min-width:170px"><option value="">attach image…</option></select>
+          <input id="replyTxt" placeholder="Type a staff reply… (agent pauses)" style="flex:1">
+          <button class="b" id="btnReply">Send</button>
+          <button class="b gray" id="btnResume">Resume AI</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="t-sim" class="hidden">
+    <div class="panel" style="max-width:760px;margin:0 auto">
+      <h3>Console tester — the same brain customers get on WhatsApp (no real send)</h3>
+      <div class="chatbox" id="simThread" style="height:420px"></div>
+      <div class="row" style="margin-top:10px">
+        <input id="simTxt" placeholder="Type as a customer…" style="flex:1">
+        <button class="b" id="btnSim">Send</button>
+        <button class="b gray" id="btnSimReset">Reset</button>
+      </div>
+      <div class="muted">Language taps, menu taps and “confirm” all behave exactly like the real channel.</div>
+    </div>
+  </section>
+
+  <section id="t-fleet" class="hidden">
+    <div class="panel">
+      <h3>Add / update vehicle</h3>
+      <div class="row">
+        <input id="v_code" placeholder="code (CAR-SWIFT-01) *" style="width:170px">
+        <input id="v_name" placeholder="name (Maruti Swift Dzire) *" style="width:220px">
+        <input id="v_cat" placeholder="category" style="width:120px">
+        <input id="v_price" placeholder="₹/day" type="number" style="width:100px">
+        <input id="v_dep" placeholder="deposit" type="number" style="width:110px">
+        <input id="v_seats" placeholder="seats" type="number" style="width:80px">
+        <input id="v_trans" placeholder="manual/auto" style="width:120px">
+        <input id="v_fuel" placeholder="fuel" style="width:100px">
+      </div>
+      <div class="row">
+        <input id="v_img" placeholder="photo URL (https://…)" style="flex:1">
+        <input id="v_loc" placeholder="pickup location" style="width:180px">
+        <input id="v_km" placeholder="km/day" type="number" style="width:90px">
+        <input id="v_extra" placeholder="₹/extra km" type="number" style="width:110px">
+        <select id="v_avail"><option value="1">available</option><option value="0">parked</option></select>
+        <button class="b" id="btnSaveV">Save</button>
+      </div>
+      <div class="row">
+        <input type="file" id="importFile" accept=".csv,.xlsx">
+        <button class="b gray" id="btnImport">Import CSV/XLSX</button>
+        <span class="muted">columns: code,name,category,seats,price_per_day,deposit,…</span>
+      </div>
+    </div>
+    <div class="panel"><h3>Fleet</h3><table id="fleetTable"></table></div>
+  </section>
+
+  <section id="t-bookings" class="hidden">
+    <div class="panel"><h3>Reservations</h3><table id="bookTable"></table></div>
+  </section>
+
+  <section id="t-persona" class="hidden">
+    <div class="panel" style="max-width:820px"><h3>Business profile (core rental role is locked)</h3><div id="personaBox"></div>
+      <button class="b" id="btnPersona">Save persona</button></div>
+  </section>
+
+  <section id="t-media" class="hidden">
+    <div class="panel">
+      <h3>Images the agent can send</h3>
+      <div class="row"><input type="file" id="mediaFile" accept=".png,.jpg,.jpeg,.webp"><button class="b" id="btnMediaUp">Upload</button><span class="muted" id="mediaNote"></span></div>
+      <div class="grid cards" id="mediaGrid"></div>
+    </div>
+  </section>
+
+  <section id="t-kb" class="hidden">
+    <div class="panel">
+      <h3>Knowledge base (policies, price lists, FAQs — grounds every answer)</h3>
+      <div class="row"><input type="file" id="kbFile" accept=".pdf,.docx,.xlsx,.csv,.txt,.md,.json"><button class="b" id="btnKbUp">Upload</button></div>
+      <table id="kbTable"></table>
+    </div>
+  </section>
+
+  <section id="t-conn" class="hidden">
+    <div class="panel"><h3>Kapso connection (env transport)</h3><div id="connBox" class="muted">…</div></div>
+    <div class="panel"><h3>Extra channels (“+” connections)</h3>
+      <div id="chanList"></div>
+      <div class="row" style="margin-top:8px">
+        <select id="ch_provider"><option value="kapso">Kapso</option><option value="meta">Meta Cloud API</option><option value="twilio">Twilio</option><option value="generic">Generic webhook</option></select>
+        <input id="ch_name" placeholder="name" style="width:150px">
+        <input id="ch_phone" placeholder="phone number id / from" style="width:190px">
+        <input id="ch_key" placeholder="api key / token" style="width:220px">
+        <button class="b" id="btnAddChan">Add channel</button>
+      </div>
+    </div>
+    <div class="panel"><h3>Test send (real Kapso API)</h3>
+      <div class="row"><input id="ts_to" placeholder="9198xxxxxxxx" style="width:180px"><input id="ts_txt" placeholder="text" style="flex:1"><button class="b" id="btnTestSend">Send test</button></div>
+    </div>
+  </section>
+</main>
+<script>
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const api=(p,opt)=>fetch(p,opt).then(async r=>{const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error((d.detail||r.statusText)+"" );return d});
+const esc=s=>(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),3200)}
+function fmtDT(s){return s?new Date(s).toLocaleString():"—"}
+
+/* tabs */
+let TAB="dash";
+$$("#tabs button").forEach(b=>b.onclick=()=>{
+  $$("#tabs button").forEach(x=>x.classList.remove("act"));b.classList.add("act");TAB=b.dataset.t;
+  $$("main > section").forEach(s=>s.classList.add("hidden"));
+  $("#t-"+TAB).classList.remove("hidden");refresh(TAB);
+});
+function refresh(t){
+  if(t==="dash")loadDash();
+  if(t==="inbox")loadConvs();
+  if(t==="fleet")loadFleet();
+  if(t==="bookings")loadBookings();
+  if(t==="persona")loadPersona();
+  if(t==="media")loadMedia();
+  if(t==="kb")loadKb();
+  if(t==="conn")loadConn();
+}
+
+/* run/pause */
+async function loadRunState(){
+  try{const d=await api("/api/whatsapp/run-state");
+    $("#runDot").classList.toggle("on",d.running);
+    $("#runTxt").textContent=d.running?"Agent RUNNING":"Agent PAUSED";
+  }catch(e){$("#runTxt").textContent="backend offline"}
+}
+$("#btnRun").onclick=()=>api("/api/whatsapp/run",{method:"POST"}).then(loadRunState);
+$("#btnPause").onclick=()=>api("/api/whatsapp/pause",{method:"POST"}).then(loadRunState);
+
+/* dashboard */
+async function loadDash(){
+  try{
+    const [st,health,llm]=await Promise.all([api("/api/stats"),api("/api/health"),api("/api/llm/health")]);
+    const c=st;
+    $("#statCards").innerHTML=[
+      ["Customers",c.customers],["Conversations",c.conversations],["Messages in",c.messages_in],
+      ["Messages out",c.messages_out],["Send failures",c.messages_failed],["With staff",c.handoffs_pending],
+      ["Vehicles",c.vehicles],["Confirmed bookings",c.bookings_confirmed],["Documents",c.documents]
+    ].map(([k,v])=>`<div class="card"><b>${v}</b><span>${k}</span></div>`).join("");
+    $("#llmBox").innerHTML="<table><tr><th>provider</th><th>state</th><th>ok/fail</th><th>last error</th></tr>"+
+      llm.providers.map(p=>{
+        const s=p.stats||{};
+        const pill=p.on_cooldown?'<span class="pill warn">cooldown</span>':(p.configured?'<span class="pill ok">ready</span>':'<span class="pill">no key</span>');
+        return `<tr><td>${esc(p.name)}<div class="muted">${esc(p.light_model)}</div></td><td>${pill}</td><td>${s.ok||0}/${s.fail||0}</td><td class="muted">${esc((s.last_error||"").slice(0,80))}</td></tr>`;
+      }).join("")+"</table>";
+    $("#intentBox").innerHTML=(st.intents||[]).length?st.intents.map(i=>`<div style="display:flex;justify-content:space-between;padding:3px 0"><span>${esc(i.intent)}</span><b>${i.count}</b></div>`).join(""):"<span class='muted'>no replies yet</span>";
+  }catch(e){$("#statCards").innerHTML=`<div class="card"><b>—</b><span>${esc(e.message)}</span></div>`}
+}
+
+/* inbox */
+let curConv=null, mediaList=[];
+async function loadConvs(){
+  try{
+    const q=encodeURIComponent($("#convQ").value||""), st=$("#convStatus").value;
+    const d=await api(`/api/conversations?q=${q}&status=${st}`);
+    $("#convList").innerHTML=d.conversations.map(c=>
+      `<div class="list-item ${c.id===curConv?"act":""}" data-id="${c.id}">
+        <div class="t">${esc(c.customer_name||c.display_phone)} <span class="muted">${esc(c.display_phone)}</span></div>
+        <div class="s">${c.status==="paused"?"⏸ ":""}${esc(c.last_message_preview||"")}</div>
+        <div class="s muted">${fmtDT(c.last_message_at)}${c.unread_count?` · <b style="color:var(--warn)">${c.unread_count} unread</b>`:""}</div>
+      </div>`).join("")||"<div class='muted'>no conversations yet</div>";
+    $$("#convList .list-item").forEach(el=>el.onclick=()=>{curConv=el.dataset.id;loadThread()});
+    if(curConv)loadThread();
+    if(!mediaList.length){const m=await api("/api/media");mediaList=m.images;
+      $("#attachImg").innerHTML='<option value="">attach image…</option>'+mediaList.map(i=>`<option value="${esc(i.id)}">${esc(i.label)}</option>`).join("")}
+  }catch(e){$("#convList").innerHTML=`<div class="muted">${esc(e.message)}</div>`}
+}
+$("#convQ").oninput=loadConvs; $("#convStatus").onchange=loadConvs;
+async function loadThread(){
+  if(!curConv)return;
+  try{
+    const d=await api("/api/conversations/"+curConv);
+    const c=d.conversation;
+    $("#convHead").innerHTML=`<b>${esc(c.customer_name||c.display_phone)}</b> · ${esc(c.display_phone)} ·
+      <span class="pill ${c.status==="paused"?"warn":"ok"}">${c.status==="paused"?"WITH STAFF":c.status}</span>
+      ${c.language?` · 🌐 ${esc(c.language)}`:""}`;
+    $("#thread").innerHTML=d.messages.map(m=>{
+      const cls=m.direction==="in"?"in":(m.sender==="human"?"human":"out");
+      const img=m.image_url&&m.msg_type==="image"?`<img src="${esc(m.image_url)}" loading="lazy">`:"";
+      const err=m.error?`<div class="meta" style="color:var(--bad)">⚠ ${esc(m.error)}</div>`:"";
+      return `<div class="msg ${cls}">${img}${esc(m.body)}<div class="meta">${m.sender} · ${m.status} · ${fmtDT(m.created_at)}</div>${err}</div>`;
+    }).join("")||"<div class='muted'>no messages</div>";
+    $("#thread").scrollTop=1e6;
+  }catch(e){toast(e.message)}
+}
+$("#btnReply").onclick=async()=>{
+  const text=$("#replyTxt").value.trim(); if(!text||!curConv)return;
+  const media_id=$("#attachImg").value;
+  try{await api(`/api/conversations/${curConv}/reply`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text,media_id})});
+    $("#replyTxt").value="";loadThread();toast("Staff reply sent — agent paused for this chat")}
+  catch(e){toast(e.message)}
+};
+$("#btnResume").onclick=async()=>{ if(!curConv)return;
+  await api(`/api/conversations/${curConv}/resume`,{method:"POST"});loadThread();toast("AI resumed")};
+
+/* simulator */
+function simAdd(cls,html){const d=document.createElement("div");d.className="msg "+cls;d.innerHTML=html;$("#simThread").appendChild(d);$("#simThread").scrollTop=1e6}
+$("#btnSim").onclick=async()=>{
+  const text=$("#simTxt").value.trim(); if(!text)return; $("#simTxt").value="";
+  simAdd("in",esc(text));
+  try{
+    const d=await api("/api/whatsapp/simulate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text})});
+    if(d.image_url||d.image_id)simAdd("out",`<img class="sim-img" src="${esc(d.image_url||("/api/media/…"+d.image_id))}">`);
+    simAdd("out",esc(d.reply||"(no reply)")+(d.menu?`<div class="meta">☰ ${esc(d.menu.button)}: ${(d.menu.rows||[]).map(r=>esc(r.title)).join(" · ")}</div>`:"")+(d.buttons?`<div class="meta">⭘ ${(d.buttons).map(b=>esc(b.title)).join(" · ")}</div>`:""));
+  }catch(e){simAdd("out","⚠ "+esc(e.message))}
+};
+$("#btnSimReset").onclick=()=>api("/api/whatsapp/simulate",{method:"DELETE"}).then(()=>{$("#simThread").innerHTML="";toast("Simulator reset")});
+$("#simTxt").addEventListener("keydown",e=>{if(e.key==="Enter")$("#btnSim").click()});
+
+/* fleet */
+async function loadFleet(){
+  try{
+    const d=await api("/api/vehicles");
+    $("#fleetTable").innerHTML="<tr><th>code</th><th>name</th><th>category</th><th>seats</th><th>₹/day</th><th>deposit</th><th>km/day</th><th>state</th><th></th></tr>"+
+      d.vehicles.map(v=>`<tr><td><code>${esc(v.code)}</code></td><td>${esc(v.name)}</td><td>${esc(v.category||"")}</td><td>${v.seats??"—"}</td>
+      <td>${v.price_per_day!=null?v.price_per_day.toLocaleString():"—"}</td><td>${v.deposit?v.deposit.toLocaleString():"—"}</td><td>${v.mileage_limit_per_day??"—"}</td>
+      <td>${v.available?'<span class="pill ok">available</span>':'<span class="pill">parked</span>'}</td>
+      <td><button class="b red" data-del="${esc(v.code)}">✕</button></td></tr>`).join("")||"<tr><td class='muted'>fleet is empty — the agent will say the team will confirm until vehicles are added</td></tr>";
+    $$("#fleetTable [data-del]").forEach(b=>b.onclick=async()=>{
+      if(!confirm("Delete "+b.dataset.del+"?"))return;
+      try{await api("/api/vehicles/"+b.dataset.del,{method:"DELETE"});loadFleet()}catch(e){toast(e.message)}
+    });
+  }catch(e){toast(e.message)}
+}
+$("#btnSaveV").onclick=async()=>{
+  const num=id=>{const v=$(id).value;return v===""?null:Number(v)};
+  const body={code:$("#v_code").value.trim(),name:$("#v_name").value.trim(),category:$("#v_cat").value.trim()||null,
+    price_per_day:num("#v_price"),deposit:num("#v_dep"),seats:num("#v_seats"),transmission:$("#v_trans").value.trim()||null,
+    fuel:$("#v_fuel").value.trim()||null,image_url:$("#v_img").value.trim()||null,location:$("#v_loc").value.trim()||null,
+    mileage_limit_per_day:num("#v_km"),extra_km_charge:num("#v_extra"),available:$("#v_avail").value==="1"};
+  if(!body.code||!body.name)return toast("code and name are required");
+  try{await api("/api/vehicles",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});toast("Saved");loadFleet()}
+  catch(e){toast(e.message)}
+};
+$("#btnImport").onclick=async()=>{
+  const f=$("#importFile").files[0]; if(!f)return toast("choose a CSV/XLSX file");
+  const fd=new FormData(); fd.append("file",f);
+  try{const r=await api("/api/vehicles/import",{method:"POST",body:fd});toast(`Imported ${r.saved}${r.errors.length?" · "+r.errors.length+" errors":""}`);loadFleet()}
+  catch(e){toast(e.message)}
+};
+
+/* bookings */
+async function loadBookings(){
+  try{
+    const d=await api("/api/bookings");
+    $("#bookTable").innerHTML="<tr><th>ref</th><th>status</th><th>customer</th><th>vehicle</th><th>window</th><th>estimate</th><th></th></tr>"+
+      d.bookings.map(b=>`<tr><td><code>${esc(b.reference||"(draft)")}</code></td>
+        <td><span class="pill ${b.status==="confirmed"?"ok":b.status==="cancelled"?"bad":"warn"}">${esc(b.status)}</span></td>
+        <td>${esc(b.customer)}<div class="muted">${esc(b.customer_phone)}</div></td>
+        <td>${esc(b.vehicle)}${b.with_driver?" · chauffeur":""}</td>
+        <td>${fmtDT(b.start_at)}<div class="muted">→ ${fmtDT(b.end_at)} (${b.days}d)</div></td>
+        <td>${b.currency}${Number(b.total_estimate).toLocaleString()}<div class="muted">dep. ${b.currency}${Number(b.deposit).toLocaleString()}</div></td>
+        <td>${b.status==="confirmed"?`<button class="b red" data-bid="${esc(b.id)}">Cancel</button>`:""}</td></tr>`).join("")
+      ||"<tr><td class='muted'>no reservations yet</td></tr>";
+    $$("#bookTable [data-bid]").forEach(b=>b.onclick=async()=>{
+      if(!confirm("Staff-cancel this booking?"))return;
+      try{await api(`/api/bookings/${b.dataset.bid}/cancel`,{method:"POST"});loadBookings()}catch(e){toast(e.message)}
+    });
+  }catch(e){toast(e.message)}
+}
+
+/* persona */
+async function loadPersona(){
+  try{
+    const d=await api("/api/persona");
+    $("#personaBox").innerHTML=Object.entries(d.fields).map(([k,f])=>
+      `<div class="row"><label style="width:210px" class="muted">${esc(f.label)}</label>
+       <input data-pk="${esc(k)}" value="${esc(f.value)}" style="flex:1"></div>`).join("");
+    $("#btnPersona").onclick=async()=>{
+      const updates={};
+      $$("#personaBox [data-pk]").forEach(i=>updates[i.dataset.pk]=i.value);
+      try{await api("/api/persona",{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({updates})});toast("Persona saved")}
+      catch(e){toast(e.message)}
+    };
+  }catch(e){toast(e.message)}
+}
+
+/* media */
+async function loadMedia(){
+  try{
+    const d=await api("/api/media");
+    $("#mediaNote").textContent=d.publicly_reachable?"base URL is public → images sent as links":"base URL is local → images uploaded to WhatsApp directly (always works)";
+    $("#mediaGrid").innerHTML=d.images.map(i=>
+      `<div class="card"><img src="${esc(i.url)}" style="width:100%;height:110px;object-fit:cover;border-radius:8px" loading="lazy">
+       <b style="font-size:12px;margin-top:6px">${esc(i.label)}</b><span>${esc(i.id)} · ${i.source}</span>
+       ${i.source==="uploads"?`<button class="b red" data-mid="${esc(i.id)}" style="margin-top:6px">Delete</button>`:""}</div>`).join("")
+      ||"<div class='muted'>no images yet — upload fleet photos here or drop files into backend/assets/images</div>";
+    $$("#mediaGrid [data-mid]").forEach(b=>b.onclick=async()=>{
+      if(!confirm("Delete this upload?"))return;
+      try{await api("/api/media/"+b.dataset.mid,{method:"DELETE"});loadMedia()}catch(e){toast(e.message)}
+    });
+  }catch(e){toast(e.message)}
+}
+$("#btnMediaUp").onclick=async()=>{
+  const f=$("#mediaFile").files[0]; if(!f)return toast("choose an image");
+  const fd=new FormData(); fd.append("file",f);
+  try{await api("/api/media/upload",{method:"POST",body:fd});toast("Stored");loadMedia()}catch(e){toast(e.message)}
+};
+
+/* knowledge */
+async function loadKb(){
+  try{
+    const d=await api("/api/knowledge/documents");
+    $("#kbTable").innerHTML="<tr><th>file</th><th>status</th><th>chunks</th><th>size</th><th></th></tr>"+
+      d.documents.map(x=>`<tr><td>${esc(x.filename)}</td>
+        <td><span class="pill ${x.status==="ready"?"ok":x.status==="failed"?"bad":"warn"}">${esc(x.status)}</span>${x.error?`<div class="muted">${esc(x.error)}</div>`:""}</td>
+        <td>${x.chunk_count}</td><td>${(x.size/1024).toFixed(0)} KB</td>
+        <td><button class="b red" data-kid="${esc(x.id)}">✕</button></td></tr>`).join("")
+      ||"<tr><td class='muted'>no documents — the agent then answers only from the fleet + persona</td></tr>";
+    $$("#kbTable [data-kid]").forEach(b=>b.onclick=async()=>{
+      if(!confirm("Delete this document?"))return;
+      try{await api("/api/knowledge/documents/"+b.dataset.kid,{method:"DELETE"});loadKb()}catch(e){toast(e.message)}
+    });
+  }catch(e){toast(e.message)}
+}
+$("#btnKbUp").onclick=async()=>{
+  const f=$("#kbFile").files[0]; if(!f)return toast("choose a file");
+  const fd=new FormData(); fd.append("file",f);
+  try{const r=await api("/api/knowledge/upload",{method:"POST",body:fd});toast(`Indexed ${r.chunks} chunks`);loadKb()}catch(e){toast(e.message)}
+};
+
+/* connection */
+async function loadConn(){
+  try{
+    const [conn,chans]=await Promise.all([api("/api/connection"),api("/api/channels")]);
+    $("#connBox").innerHTML=`<div class="kv">
+      <div>credentials</div><div><span class="pill ${conn.credential_state==="configured"?"ok":"bad"}">${esc(conn.credential_state)}</span></div>
+      <div>verified</div><div>${conn.verified?'<span class="pill ok">yes — '+esc(conn.detail)+"</span>":'<span class="pill bad">'+esc(conn.error||"not verified")+"</span>"}</div>
+      <div>webhook URL</div><div><code>${esc(conn.webhook_url)}</code></div>
+      <div>note</div><div class="muted">${esc(conn.note)}</div></div>`;
+    $("#chanList").innerHTML=chans.channels.map(c=>
+      `<div class="list-item"><div class="t">${esc(c.name)} ${c.is_primary?'<span class="pill ok">PRIMARY</span>':""} <span class="pill ${c.status==="connected"?"ok":c.status==="error"?"bad":""}">${esc(c.status)}</span></div>
+       <div class="s muted">${esc(c.provider)} · webhook: ${esc(c.webhook_url)} ${c.last_error?"· ⚠ "+esc(c.last_error):""}</div>
+       <div class="row"><button class="b gray" data-test="${esc(c.id)}">Test creds</button>${c.is_primary?"":`<button class="b gray" data-prim="${esc(c.id)}">Make primary</button>`}<button class="b red" data-delc="${esc(c.id)}">Delete</button></div>
+      </div>`).join("")||"<div class='muted'>no extra channels — the env Kapso transport from backend/.env is active</div>";
+    $$("[data-test]").forEach(b=>b.onclick=async()=>{try{const r=await api(`/api/channels/${b.dataset.test}/test`,{method:"POST"});toast(r.ok?"✓ "+r.detail:"✗ "+r.error);loadConn()}catch(e){toast(e.message)}});
+    $$("[data-prim]").forEach(b=>b.onclick=async()=>{await api(`/api/channels/${b.dataset.prim}/primary`,{method:"POST"});loadConn()});
+    $$("[data-delc]").forEach(b=>b.onclick=async()=>{if(confirm("Delete channel?")){await api(`/api/channels/${b.dataset.delc}`,{method:"DELETE"});loadConn()}});
+  }catch(e){$("#connBox").textContent=e.message}
+}
+$("#btnAddChan").onclick=async()=>{
+  const creds={};
+  const key=$("#ch_key").value.trim();
+  if(key)creds[({kapso:"api_key",meta:"access_token",twilio:"auth_token",generic:"send_url"})[$("#ch_provider").value]]=key;
+  try{await api("/api/channels",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({name:$("#ch_name").value.trim(),provider:$("#ch_provider").value,phone_number:$("#ch_phone").value.trim(),credentials:creds})});
+  toast("Channel added");loadConn()}catch(e){toast(e.message)}
+};
+$("#btnTestSend").onclick=async()=>{
+  try{const r=await api("/api/whatsapp/test-send",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({to:$("#ts_to").value.trim(),text:$("#ts_txt").value.trim()})});
+    toast("Sent to …"+r.to_tail)}catch(e){toast(e.message)}
+};
+
+/* boot */
+setInterval(()=>$("#clock").textContent=new Date().toLocaleTimeString(),1000);
+setInterval(loadRunState,5000);
+loadRunState();refresh("dash");
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+# --- credentials: never commit these -------------------------------------
+backend/.env
+*.env
+.env.*
+!.env.example
+!**/.env.example
+license.key
+license-state.json
+
+# --- runtime data (customer records, uploaded media, session locks) -------
+backend/data/
+backend/*.db
+backend/*.db-wal
+backend/*.db-shm
+backend/data/*.db
+backend/server.log
+*.log
+
+# --- python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+*.spec
+
+# --- node / next ----------------------------------------------------------
+node_modules/
+.next/
+out/
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+next-env.d.ts
+
+# --- local workspace scratch ----------------------------------------------
+.zwork/
+.freebuff/
+_frames/
+_frames2/
+_diag_*.py
+_probe_*.py
+_patch_*.py
+
+# --- editor / OS ----------------------------------------------------------
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini

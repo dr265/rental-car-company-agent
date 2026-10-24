@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap');
+
+/* ==========================================================================
+   ZoomRideXX Car Rentals — deep graphite, cool ivory, headlight amber and gold.
+   Scoped by the .sara root so the preserved platform components keep working.
+   ========================================================================== */
+.sara{
+  --ink:#0d1117; --ink-2:#131920; --ink-3:#1a222c; --line:rgba(226,232,240,.10);
+  --ivory:#eef2f7; --muted:#b7c1cd; --dim:#8792a1;
+  --green:#2fbf71; --green-deep:#1f8f55; --brass:#d6b36a; --saffron:#e08a2e;
+  --font-sans:'Inter',ui-sans-serif,system-ui,sans-serif;
+  --font-serif:'Instrument Serif',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+  background:
+    radial-gradient(1200px 620px at 78% -10%, rgba(224,138,46,.10), transparent 60%),
+    radial-gradient(900px 520px at 8% 10%, rgba(214,179,106,.07), transparent 65%),
+    var(--ink);
+  color:var(--ivory); font-family:var(--font-sans);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  min-height:100vh;
+}
+.sara .serif{font-family:var(--font-serif);letter-spacing:-0.01em}
+.sara .mono{font-family:var(--font-mono)}
+.sara ::selection{background:rgba(224,138,46,.32)}
+
+.sara .grain::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.sara .grid-bg{
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);
+}
+
+/* physically plausible shadows */
+.sara .shadow-device{
+  box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 0 0 1px rgba(0,0,0,.6),
+  0 2px 4px rgba(0,0,0,.4),0 18px 40px -10px rgba(0,0,0,.7),0 60px 120px -30px rgba(0,0,0,.8);
+}
+.sara .shadow-card{
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 0 0 1px rgba(0,0,0,.5),
+  0 10px 24px -8px rgba(0,0,0,.6),0 30px 60px -20px rgba(0,0,0,.7);
+}
+.sara .metal{
+  background:linear-gradient(160deg,#2a2f38 0%,#151920 45%,#1d222b 100%);
+}
+.sara .metal-edge{
+  background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,0) 40%,rgba(0,0,0,.25));
+}
+
+/* typing indicator */
+.sara .dot{animation:blink 1.4s infinite both}
+.sara .dot:nth-child(2){animation-delay:.2s}.sara .dot:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+
+/* pulse on accepted webhook */
+.sara .pulse::after{
+  content:"";position:absolute;inset:-4px;border-radius:9999px;border:1px solid var(--green);
+  animation:pulse 2.4s ease-out infinite;opacity:0;
+}
+@keyframes pulse{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.8);opacity:0}}
+
+/* scroll reveal */
+.sara [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.sara [data-reveal].is-visible{opacity:1;transform:none}
+
+/* marquee */
+.sara .marquee{animation:marquee 34s linear infinite}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* buttons */
+.sara .btn-primary{
+  background:linear-gradient(180deg,#efb15d,#d57b23);color:#17110a;
+  box-shadow:0 1px 0 rgba(255,255,255,.40) inset,0 -1px 0 rgba(0,0,0,.20) inset,0 8px 20px -8px rgba(224,138,46,.65);
+  transition:transform .2s,box-shadow .2s,filter .2s;
+}
+.sara .btn-primary:hover{transform:translateY(-1px);filter:brightness(1.04);box-shadow:0 1px 0 rgba(255,255,255,.40) inset,0 -1px 0 rgba(0,0,0,.20) inset,0 14px 28px -10px rgba(224,138,46,.75)}
+.sara .btn-primary:active{transform:translateY(0)}
+.sara .btn-ghost{border:1px solid var(--line);background:rgba(255,255,255,.02);transition:border-color .2s,background .2s,transform .2s}
+.sara .btn-ghost:hover{border-color:rgba(214,179,106,.45);background:rgba(214,179,106,.07);transform:translateY(-1px)}
+.sara :focus-visible{outline:2px solid var(--saffron);outline-offset:3px;border-radius:6px}
+
+/* feature tile hover */
+.sara .tile{transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,background .35s}
+.sara .tile:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.16);background:var(--ink-3)}
+
+/* live status chip */
+.sara .status-dot{animation:statusPulse 2s ease-in-out infinite}
+@keyframes statusPulse{0%,100%{opacity:1}50%{opacity:.45}}
+
+@media (prefers-reduced-motion:reduce){
+  .sara *{animation:none!important;transition:none!important}
+  .sara [data-reveal]{opacity:1;transform:none}
+}
+
+/* ==========================================================================
+   Customer website (root route) — the ZoomRideXX public design language.
+   Scoped by .zsite so the owner console (.sara) is untouched.
+   ========================================================================== */
+.zsite{
+  --zoom-950:#07090E; --zoom-900:#0D111A; --zoom-850:#111723; --zoom-800:#161E2E;
+  --zoom-blue:#38BDF8; --zoom-blue-deep:#0284C7; --zoom-gold:#FBBF24; --zoom-gold-deep:#F59E0B;
+  background:var(--zoom-950); color:#f1f5f9;
+  font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  min-height:100vh;
+}
+.zsite ::selection{background:#0284C7;color:#fff}
+.zsite .font-heading{font-family:'Space Grotesk',ui-sans-serif,system-ui,sans-serif}
+
+.zsite .glass-card{
+  background:rgba(17,23,35,.85);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(56,189,248,.16);
+}
+.zsite .neon-text{
+  background:linear-gradient(135deg,#38BDF8 0%,#FBBF24 100%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+}
+.zsite .gold-glow{box-shadow:0 0 30px rgba(245,158,11,.18)}
+.zsite .blue-glow{box-shadow:0 0 30px rgba(56,189,248,.18)}
+
+.zsite .dot-grid{
+  background-image:radial-gradient(#161e2e 1px,transparent 1px);
+  background-size:28px 28px;
+}
+
+/* chat drawer slide */
+.zsite .drawer{transform:translateX(100%);transition:transform .3s ease}
+.zsite .drawer.open{transform:translateX(0)}
+
+/* message appear */
+.zsite .msg-in{animation:msgIn .25s ease both}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* typing dots (site palette) */
+.zsite .tdot{animation:tblink 1.4s infinite both}
+.zsite .tdot:nth-child(2){animation-delay:.2s}.zsite .tdot:nth-child(3){animation-delay:.4s}
+@keyframes tblink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+
+.zsite [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.zsite [data-reveal].is-visible{opacity:1;transform:none}
+
+.zsite :focus-visible{outline:2px solid #38BDF8;outline-offset:2px;border-radius:6px}
+
+@media (prefers-reduced-motion:reduce){
+  .zsite *{animation:none!important;transition:none!important}
+  .zsite [data-reveal]{opacity:1;transform:none}
+  .zsite .drawer{transition:none}
+}

@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZoomRideXX Car Rentals | Driven by comfort, Trusted for cleanliness</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            zoomDark: {
+              950: '#07090E',
+              900: '#0D111A',
+              850: '#111723',
+              800: '#161E2E',
+              700: '#222E45',
+            },
+            zoomBlue: {
+              400: '#38BDF8',
+              500: '#0284C7',
+              600: '#0369A1',
+            },
+            zoomGold: {
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+            }
+          },
+          fontFamily: {
+            heading: ['Space Grotesk', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-card {
+      background: rgba(17, 23, 35, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(56, 189, 248, 0.16);
+    }
+    .neon-text {
+      background: linear-gradient(135deg, #38BDF8 0%, #FBBF24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-glow {
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.18);
+    }
+    .blue-glow {
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.18);
+    }
+  </style>
+</head>
+<body class="bg-zoomDark-950 text-slate-100 font-sans antialiased selection:bg-zoomBlue-500 selection:text-white">
+
+  <!-- TOP BAR: Hotlines & Cleanliness Commitment -->
+  <div class="bg-black/90 border-b border-slate-800 text-xs py-2 px-4 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 text-slate-300">
+      <div class="flex items-center space-x-2 text-[11px] sm:text-xs">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-ping"></span>
+        <span class="text-white font-medium">✨ Driven by comfort, Trusted for cleanliness</span>
+        <span class="text-slate-700 hidden sm:inline">•</span>
+        <span class="text-slate-400 hidden sm:inline">17+ Sanitized Self-Drive & Chauffeur Fleet</span>
+      </div>
+      <div class="flex items-center space-x-4 ml-auto text-xs font-semibold">
+        <a href="tel:9179642928" class="text-zoomBlue-400 hover:text-white flex items-center gap-1 transition">
+          <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> 9179642928
+        </a>
+        <span class="text-slate-700">|</span>
+        <a href="tel:9516108857" class="text-zoomGold-400 hover:text-white flex items-center gap-1 transition">
+          <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> 9516108857
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="glass-card border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex flex-col">
+        <div class="flex items-center gap-2">
+          <span class="font-heading text-2xl sm:text-3xl font-extrabold tracking-tight text-white uppercase flex items-center">
+            Zoom<span class="text-zoomGold-400">Ride</span><span class="text-zoomBlue-400">XX</span>
+          </span>
+          <span class="text-[10px] bg-zoomBlue-500/20 text-zoomBlue-400 border border-zoomBlue-500/40 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+            RENTALS
+          </span>
+        </div>
+        <span class="text-[10px] tracking-[0.2em] text-slate-400 uppercase -mt-0.5 font-medium">Driven by comfort • Trusted for cleanliness</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center space-x-8 text-xs font-bold uppercase tracking-wider text-slate-300">
+        <a href="#fleet" class="hover:text-zoomBlue-400 transition">Our Fleet & Rates</a>
+        <a href="#how-it-works" class="hover:text-zoomBlue-400 transition">How It Works</a>
+        <a href="tel:9179642928" class="hover:text-zoomBlue-400 transition">24/7 Helpline</a>
+      </nav>
+
+      <!-- CTA Buttons -->
+      <div class="flex items-center space-x-3">
+        <a href="https://wa.me/919179642928?text=Hi%20ZoomRideXX,%20I%20want%20to%20inquire%20about%20car%20rental." target="_blank" class="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-bold bg-emerald-600 hover:bg-emerald-500 text-black px-4 py-2.5 rounded transition shadow-lg shadow-emerald-600/20">
+          <i data-lucide="message-circle" class="w-4 h-4 fill-black text-transparent"></i> WhatsApp Desk
+        </a>
+        <button onclick="toggleAgentChat()" class="hidden sm:flex items-center gap-2 bg-zoomDark-900 border border-zoomBlue-500/40 text-zoomBlue-300 hover:text-white px-4 py-2.5 rounded font-bold text-xs uppercase tracking-wider hover:border-zoomBlue-400 transition">
+          <i data-lucide="sparkles" class="w-4 h-4 text-zoomGold-400"></i> AI Concierge
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- EYE-CATCHING HERO SECTION (Clean, Visual, Uncluttered) -->
+  <section class="relative min-h-[82vh] flex items-center justify-center overflow-hidden py-12 lg:py-16">
+    <!-- Atmospheric Ambient Lighting & Grid -->
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-zoomBlue-500/10 rounded-full blur-[140px]"></div>
+      <div class="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-zoomGold-500/10 rounded-full blur-[140px]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(#161e2e_1px,transparent_1px)] [background-size:28px_28px] opacity-40"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- LEFT COLUMN: Punchy, minimal & user-friendly -->
+        <div class="lg:col-span-7 text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zoomGold-500/30 bg-zoomGold-500/10 text-zoomGold-400 text-xs font-semibold tracking-wide mb-5">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span>100% Sanitized Fleet • Self-Drive & Chauffeur</span>
+          </div>
+
+          <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08] mb-4">
+            Rent Premium.<br>
+            <span class="neon-text">Drive In Minutes.</span>
+          </h1>
+
+          <p class="text-slate-300 text-sm sm:text-base font-normal max-w-lg mb-8 leading-relaxed">
+            17 certified vehicles starting from just <strong class="text-zoomGold-400">₹1,000/-</strong>. Fast WhatsApp verification, clean sanitized interiors, and instant doorstep delivery.
+          </p>
+
+          <!-- INTERACTIVE QUICK SEARCH BAR -->
+          <div class="glass-card p-3 rounded-2xl border border-zoomBlue-500/25 shadow-2xl max-w-xl">
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 text-xs">
+              <div class="sm:col-span-4 bg-zoomDark-900/90 rounded-xl p-2.5 border border-slate-800">
+                <label class="block text-[10px] uppercase font-bold text-slate-400 tracking-wider">Duration</label>
+                <select id="heroSearchDuration" class="w-full bg-transparent text-white font-semibold outline-none mt-1 cursor-pointer text-xs">
+                  <option value="24h" selected>24 Hours (Full Day)</option>
+                  <option value="12h">12 Hours</option>
+                  <option value="6h">6 Hours (Local)</option>
+                </select>
+              </div>
+
+              <div class="sm:col-span-4 bg-zoomDark-900/90 rounded-xl p-2.5 border border-slate-800">
+                <label class="block text-[10px] uppercase font-bold text-slate-400 tracking-wider">Vehicle Type</label>
+                <select id="heroSearchCategory" class="w-full bg-transparent text-white font-semibold outline-none mt-1 cursor-pointer text-xs">
+                  <option value="all" selected>All Fleet (17 Cars)</option>
+                  <option value="suv">4x4 & SUVs (7)</option>
+                  <option value="luxury">VIP Luxury (2)</option>
+                  <option value="sedan">Sedans & Crossovers</option>
+                  <option value="economy">Economy & CNG</option>
+                </select>
+              </div>
+
+              <div class="sm:col-span-4 flex items-stretch">
+                <button onclick="executeHeroSearch()" class="w-full bg-gradient-to-r from-zoomBlue-500 to-cyan-400 hover:brightness-110 text-black font-extrabold uppercase tracking-wider text-xs rounded-xl shadow-lg shadow-zoomBlue-500/25 flex items-center justify-center gap-1.5 transition py-3 sm:py-0">
+                  <span>Explore Fleet</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Micro-Trust Badges in 1 clean line -->
+          <div class="flex flex-wrap items-center gap-y-2 gap-x-5 mt-6 text-xs text-slate-400">
+            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> No Hidden Charges</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> 30-Min Doorstep Delivery</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Fast WhatsApp KYC</span>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: The Visual Hero Spotlight Card -->
+        <div class="lg:col-span-5">
+          <div class="glass-card rounded-2xl overflow-hidden border border-zoomBlue-500/30 shadow-2xl relative gold-glow group">
+            
+            <!-- Car Image Container -->
+            <div class="h-60 sm:h-72 bg-gradient-to-b from-slate-900 to-black relative overflow-hidden">
+              <img id="heroCarImage" src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1200&q=80" alt="Featured Car" class="w-full h-full object-cover transition-opacity duration-300">
+              
+              <!-- Gradient Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-zoomDark-950 via-transparent to-black/30"></div>
+
+              <!-- Badges on Image -->
+              <div class="absolute top-3.5 left-3.5">
+                <span id="heroCarBadge" class="text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded border border-zoomGold-500/40 text-zoomGold-400 bg-zoomGold-500/10 backdrop-blur-md">
+                  🔥 MOST POPULAR 4x4
+                </span>
+              </div>
+
+              <!-- Price Tag floating on image -->
+              <div class="absolute bottom-3.5 left-3.5 right-3.5 flex items-end justify-between backdrop-blur-md bg-black/60 p-3 rounded-xl border border-white/10">
+                <div>
+                  <div class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Starting Rate</div>
+                  <div class="flex items-baseline gap-2">
+                    <span id="heroCarPrice12" class="text-xl font-heading font-extrabold text-white">₹3,500</span>
+                    <span class="text-[10px] text-slate-400">/ 12h</span>
+                    <span class="text-slate-600">|</span>
+                    <span id="heroCarPrice24" class="text-xl font-heading font-extrabold text-zoomGold-400">₹5,000</span>
+                    <span class="text-[10px] text-slate-400">/ 24h</span>
+                  </div>
+                </div>
+                <span class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Available Today</span>
+              </div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-5">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 id="heroCarName" class="font-heading text-xl font-bold text-white">Mahindra Thar Roxx 4x4</h3>
+                  <p id="heroCarTagline" class="text-xs text-slate-400 mt-0.5">5-Door Flagship Off-Roader</p>
+                </div>
+              </div>
+
+              <div id="heroCarSpecs" class="mt-2.5 text-[11px] text-slate-300 bg-black/40 px-3 py-1.5 rounded-lg border border-slate-800 font-medium">
+                Diesel • 5 Seater • Panoramic Sunroof • Auto 4x4
+              </div>
+
+              <!-- Dual CTAs -->
+              <div class="grid grid-cols-2 gap-2.5 mt-4">
+                <button id="heroCarBookBtn" onclick="openBookingModal('Thar Roxx (5-Door)', 5000)" class="w-full py-2.5 bg-zoomDark-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider rounded-lg transition border border-slate-700">
+                  Quick Reserve
+                </button>
+                <a id="heroCarWaBtn" href="https://wa.me/919179642928?text=Hi%20ZoomRideXX,%20I%20want%20to%20reserve%20Mahindra%20Thar%20Roxx%204x4.%20Please%20share%20availability." target="_blank" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-black font-extrabold text-xs uppercase tracking-wider rounded-lg transition flex items-center justify-center gap-1.5 shadow">
+                  <i data-lucide="message-circle" class="w-3.5 h-3.5 fill-black text-transparent"></i> WhatsApp
+                </a>
+              </div>
+
+              <!-- Quick Switcher Tabs -->
+              <div class="mt-4 pt-3.5 border-t border-slate-800">
+                <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-2">Tap to inspect popular models:</div>
+                <div class="flex items-center gap-1.5 overflow-x-auto pb-1">
+                  <button id="hero-pill-thar-roxx" onclick="selectHeroCar('thar-roxx')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-zoomBlue-500 text-black shadow transition whitespace-nowrap">
+                    🚙 Thar Roxx
+                  </button>
+                  <button id="hero-pill-fortuner" onclick="selectHeroCar('fortuner')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-zoomDark-900 border border-slate-800 text-slate-400 hover:text-white transition whitespace-nowrap">
+                    👑 Fortuner
+                  </button>
+                  <button id="hero-pill-scorpio-n" onclick="selectHeroCar('scorpio-n')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-zoomDark-900 border border-slate-800 text-slate-400 hover:text-white transition whitespace-nowrap">
+                    🚘 Scorpio N
+                  </button>
+                  <button id="hero-pill-swift" onclick="selectHeroCar('swift')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-zoomDark-900 border border-slate-800 text-slate-400 hover:text-white transition whitespace-nowrap">
+                    ⛽ Swift CNG
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FLEET & RATE CARD SECTION -->
+  <section id="fleet" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-8">
+      <span class="text-zoomBlue-400 font-heading text-xs uppercase tracking-[0.25em] font-bold">17 Verified Vehicles</span>
+      <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white mt-1">Our Fleet & Transparent Rates</h2>
+      <p class="text-slate-400 text-xs sm:text-sm mt-2 font-normal">
+        No hidden fees or unexpected deposit cuts. 24/7 roadside assistance included on all packages.
+      </p>
+
+      <!-- LIVE SEARCH BAR -->
+      <div class="relative max-w-md mx-auto mt-6">
+        <input type="text" id="fleetSearchInput" oninput="handleFleetSearch(event)" placeholder="Search any car (e.g. Thar, Fortuner, Swift, Creta...)" class="w-full bg-zoomDark-900/90 border border-slate-700 focus:border-zoomBlue-400 rounded-full pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 outline-none backdrop-blur shadow-inner transition">
+        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+      </div>
+
+      <!-- DURATION TOGGLE SWITCHER (6h vs 12h vs 24h) -->
+      <div class="inline-flex p-1.5 bg-zoomDark-900 border border-slate-800 rounded-lg mt-6 shadow-inner">
+        <button onclick="setDuration('24h')" id="btn-dur-24" class="px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider bg-zoomBlue-500 text-black shadow transition">
+          ⭐ 24 Hours Rate (Full Day)
+        </button>
+        <button onclick="setDuration('12h')" id="btn-dur-12" class="px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition">
+          12 Hours Rate
+        </button>
+        <button onclick="setDuration('6h')" id="btn-dur-6" class="px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition">
+          6 Hours Rate
+        </button>
+      </div>
+
+      <!-- CATEGORY FILTER PILLS -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mt-5">
+        <button onclick="filterCategory('all')" id="cat-all" class="px-4 py-1.5 rounded-full text-xs font-bold bg-slate-800 text-white border border-slate-700">All (17 Vehicles)</button>
+        <button onclick="filterCategory('suv')" id="cat-suv" class="px-4 py-1.5 rounded-full text-xs font-semibold bg-zoomDark-900 text-slate-400 border border-slate-800 hover:text-white">4x4 & SUVs (7)</button>
+        <button onclick="filterCategory('luxury')" id="cat-luxury" class="px-4 py-1.5 rounded-full text-xs font-semibold bg-zoomDark-900 text-slate-400 border border-slate-800 hover:text-white">VIP Luxury (2)</button>
+        <button onclick="filterCategory('sedan')" id="cat-sedan" class="px-4 py-1.5 rounded-full text-xs font-semibold bg-zoomDark-900 text-slate-400 border border-slate-800 hover:text-white">Sedans & Crossovers (5)</button>
+        <button onclick="filterCategory('economy')" id="cat-economy" class="px-4 py-1.5 rounded-full text-xs font-semibold bg-zoomDark-900 text-slate-400 border border-slate-800 hover:text-white">Hatchbacks & CNG (3)</button>
+      </div>
+    </div>
+
+    <!-- FLEET GRID (Dynamically populated from official rate card) -->
+    <div id="fleetGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Cards rendered via JavaScript below -->
+    </div>
+  </section>
+
+  <!-- QUICK RENTAL CALCULATOR & BOOKING MODAL -->
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="glass-card rounded-xl max-w-lg w-full p-6 sm:p-8 relative border border-zoomBlue-500/40">
+      <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="mb-6">
+        <span class="text-zoomBlue-400 text-xs font-bold uppercase tracking-wider">Fast Booking Request</span>
+        <h3 class="font-heading text-2xl font-bold text-white mt-1" id="modalCarTitle">Book Your Car</h3>
+        <p class="text-xs text-slate-400 mt-1">Fill this quick form to receive instant confirmation on your WhatsApp.</p>
+      </div>
+
+      <form onsubmit="handleModalSubmit(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="modalSelectedCar">
+        
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Your Full Name</label>
+          <input type="text" id="custName" required placeholder="e.g. Rahul Sharma" class="w-full bg-zoomDark-900 border border-slate-700 focus:border-zoomBlue-400 rounded px-3 py-2 text-white outline-none">
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">WhatsApp Mobile Number</label>
+          <input type="tel" id="custPhone" required placeholder="+91 98765 43210" class="w-full bg-zoomDark-900 border border-slate-700 focus:border-zoomBlue-400 rounded px-3 py-2 text-white outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Rental Duration</label>
+            <select id="modalDuration" onchange="updateModalPrice()" class="w-full bg-zoomDark-900 border border-slate-700 focus:border-zoomBlue-400 rounded px-3 py-2 text-white outline-none">
+              <option value="6h">6 Hours</option>
+              <option value="12h">12 Hours</option>
+              <option value="24h" selected>24 Hours (Full Day)</option>
+              <option value="2d">2 Days</option>
+              <option value="3d">3+ Days Outstation</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Rental Type</label>
+            <select id="modalType" class="w-full bg-zoomDark-900 border border-slate-700 focus:border-zoomBlue-400 rounded px-3 py-2 text-white outline-none">
+              <option>Self-Drive</option>
+              <option>With Chauffeur (Driver)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Pickup Date</label>
+            <input type="date" id="custDate" required class="w-full bg-zoomDark-900 border border-slate-700 focus:border-zoomBlue-400 rounded px-3 py-2 text-white outline-none">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Pickup Time</label>
+            <input type="time" id="custTime" required class="w-full bg-zoomDark-900 border border-slate-700 focus:border-zoomBlue-400 rounded px-3 py-2 text-white outline-none">
+          </div>
+        </div>
+
+        <div class="p-3 bg-black/60 rounded border border-slate-800 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] text-slate-400 uppercase font-semibold">Estimated Rent:</span>
+            <div class="text-xl font-bold text-zoomGold-400" id="modalPriceDisplay">₹4,000/-</div>
+          </div>
+          <span class="text-[10px] text-slate-400">Excludes security deposit</span>
+        </div>
+
+        <button type="submit" class="w-full py-3 bg-gradient-to-r from-zoomBlue-500 to-cyan-400 text-black font-extrabold uppercase tracking-wider rounded hover:brightness-110 transition shadow-lg shadow-zoomBlue-500/20">
+          Confirm Booking via WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS & RENTAL TERMS -->
+  <section id="how-it-works" class="py-16 bg-black/50 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-zoomGold-400 font-heading text-xs uppercase tracking-widest font-bold">Simple 3-Step Process</span>
+        <h2 class="font-heading text-3xl font-extrabold text-white mt-1">How ZoomRideXX Works</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 glass-card rounded-lg text-center">
+          <div class="w-12 h-12 rounded-full bg-zoomBlue-500/10 text-zoomBlue-400 flex items-center justify-center mx-auto mb-4 border border-zoomBlue-500/30">
+            <span class="font-heading font-extrabold text-lg">1</span>
+          </div>
+          <h3 class="font-heading text-lg font-bold text-white">Choose Your Car</h3>
+          <p class="text-slate-400 text-xs mt-2 font-normal">Select from our 17 sanitized vehicles based on your required hours (6h, 12h, or 24h).</p>
+        </div>
+
+        <div class="p-6 glass-card rounded-lg text-center">
+          <div class="w-12 h-12 rounded-full bg-zoomGold-500/10 text-zoomGold-400 flex items-center justify-center mx-auto mb-4 border border-zoomGold-500/30">
+            <span class="font-heading font-extrabold text-lg">2</span>
+          </div>
+          <h3 class="font-heading text-lg font-bold text-white">WhatsApp Verification</h3>
+          <p class="text-slate-400 text-xs mt-2 font-normal">Send your Driving License & Aadhaar on WhatsApp. Quick 5-minute digital verification.</p>
+        </div>
+
+        <div class="p-6 glass-card rounded-lg text-center">
+          <div class="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-4 border border-emerald-500/30">
+            <span class="font-heading font-extrabold text-lg">3</span>
+          </div>
+          <h3 class="font-heading text-lg font-bold text-white">Drive Away Clean</h3>
+          <p class="text-slate-400 text-xs mt-2 font-normal">Collect keys from our hub or opt for doorstep delivery directly to your home or hotel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOATING STORE OWNER ALERT TEST BUTTON (DISCREET DEMO TRIGGER) -->
+  <button onclick="simulateBookingAlert('Rahul Sharma - Thar Roxx (24 Hours) - ₹5,000')" class="fixed bottom-6 left-6 z-40 bg-zoomDark-900/90 hover:bg-zoomDark-800 border border-zoomGold-500/40 text-zoomGold-400 hover:text-white text-[11px] font-bold px-3.5 py-2 rounded-full shadow-2xl flex items-center gap-2 backdrop-blur transition">
+    <i data-lucide="bell-ring" class="w-3.5 h-3.5 animate-pulse text-zoomGold-400"></i>
+    <span class="hidden sm:inline">Test Owner WhatsApp Alert</span>
+  </button>
+
+  <!-- FOOTER -->
+  <footer class="bg-zoomDark-950 border-t border-slate-800 py-12 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <span class="font-heading text-xl font-bold text-white">Zoom<span class="text-zoomGold-400">Ride</span><span class="text-zoomBlue-400">XX</span> CAR RENTALS</span>
+        <p class="text-[11px] text-slate-400 mt-1">Driven by comfort, Trusted for cleanliness • 24/7 Helpline: 9179642928 | 9516108857</p>
+      </div>
+      <div>
+        Autonomous Booking Platform & AI System engineered by <strong class="text-zoomGold-400">AURUM AI SYSTEMS</strong>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================== -->
+  <!-- ZOOMRIDEXX AI FLEET CONCIERGE (WHATSAPP AGENT - "KARAN")   -->
+  <!-- ========================================================== -->
+
+  <!-- Floating Trigger Button -->
+  <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+    <div class="hidden sm:flex bg-black/90 border border-zoomBlue-500/50 text-zoomBlue-300 text-xs px-3.5 py-2 rounded-full shadow-2xl animate-pulse">
+      <span>🚗 Need a car right now? Ask Karan!</span>
+    </div>
+    <button onclick="toggleAgentChat()" class="bg-gradient-to-r from-zoomBlue-500 to-cyan-500 text-black p-4 rounded-full shadow-2xl hover:scale-105 transition flex items-center justify-center">
+      <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </button>
+  </div>
+
+  <!-- CHAT DRAWER -->
+  <div id="agentChatDrawer" class="fixed inset-y-0 right-0 w-full sm:w-[420px] bg-zoomDark-950 border-l border-zoomBlue-500/30 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- Header -->
+    <div class="p-4 bg-zoomDark-900 border-b border-slate-800 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-zoomBlue-500 text-black flex items-center justify-center font-bold text-sm shadow">
+          ZR
+        </div>
+        <div>
+          <h4 class="text-sm font-bold text-white flex items-center gap-1.5">
+            Karan • ZoomRideXX Concierge
+          </h4>
+          <p class="text-[10px] text-slate-400">Instant Car Quotes & Booking • Online 24/7</p>
+        </div>
+      </div>
+      <button onclick="toggleAgentChat()" class="text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Messages Container -->
+    <div id="chatMessages" class="flex-1 overflow-y-auto p-4 space-y-3 text-xs">
+      <div class="bg-zoomDark-900 border border-slate-800 p-3 rounded-2xl rounded-tl-none text-slate-200 leading-relaxed">
+        <p>Namaste! 🚗 Welcome to <strong>ZoomRideXX Car Rentals</strong>.</p>
+        <p class="mt-2 text-slate-300">Are you looking for a self-drive SUV, outstation sedan, or budget city car?</p>
+        <div class="mt-2 space-y-1 text-zoomBlue-300 font-medium">
+          <p>• <strong>SUVs:</strong> Thar, Thar Roxx, Scorpio N, XUV 700</p>
+          <p>• <strong>Luxury:</strong> Fortuner, Endeavour</p>
+          <p>• <strong>Economy & CNG:</strong> Swift, Baleno, Ertiga, Dzire</p>
+        </div>
+      </div>
+
+      <!-- Quick Chips -->
+      <div class="flex flex-wrap gap-1.5">
+        <button onclick="handleUserPrompt('Thar Roxx 24 hours rent details')" class="bg-zoomDark-900 border border-slate-700 text-zoomBlue-300 px-2.5 py-1.5 rounded-full text-[11px] hover:bg-zoomBlue-500/20 transition">
+          🚙 Thar Roxx (₹5,000 / 24h)
+        </button>
+        <button onclick="handleUserPrompt('Scorpio N 24 hours rental quote')" class="bg-zoomDark-900 border border-slate-700 text-zoomBlue-300 px-2.5 py-1.5 rounded-full text-[11px] hover:bg-zoomBlue-500/20 transition">
+          🚘 Scorpio N (₹4,000 / 24h)
+        </button>
+        <button onclick="handleUserPrompt('Swift or Baleno 12 hours local')" class="bg-zoomDark-900 border border-slate-700 text-zoomBlue-300 px-2.5 py-1.5 rounded-full text-[11px] hover:bg-zoomBlue-500/20 transition">
+          ✨ Swift / Baleno (12h)
+        </button>
+        <button onclick="handleUserPrompt('Security deposit and document rules for self drive')" class="bg-zoomDark-900 border border-slate-700 text-zoomBlue-300 px-2.5 py-1.5 rounded-full text-[11px] hover:bg-zoomBlue-500/20 transition">
+          📄 Documents & Deposit Rules
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Input Form -->
+    <div class="p-3 bg-black/60 border-t border-slate-800 text-xs">
+      <p class="text-zoomGold-400 text-[11px] mb-2 font-semibold">Enter your phone number to lock your car reservation:</p>
+      <form onsubmit="submitAgentLead(event)" class="space-y-2">
+        <input type="text" id="aiName" placeholder="Your Name" required class="w-full bg-zoomDark-900 border border-slate-700 rounded px-2.5 py-1.5 text-white text-xs outline-none">
+        <div class="flex gap-2">
+          <input type="tel" id="aiPhone" placeholder="WhatsApp Number (+91...)" required class="flex-1 bg-zoomDark-900 border border-slate-700 rounded px-2.5 py-1.5 text-white text-xs outline-none">
+          <button type="submit" class="px-3.5 py-1.5 bg-zoomBlue-500 text-black font-bold rounded text-xs">
+            Reserve
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Chat Text Bar -->
+    <div class="p-3 bg-zoomDark-900 border-t border-slate-800">
+      <form onsubmit="handleChatSubmit(event)" class="flex gap-2">
+        <input type="text" id="chatInput" placeholder="Ask about car availability, rates, deposit..." class="flex-1 bg-black border border-slate-700 rounded-full px-4 py-2 text-xs text-white outline-none">
+        <button type="submit" class="w-8 h-8 bg-zoomBlue-500 text-black rounded-full flex items-center justify-center">
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- STORE OWNER WHATSAPP NOTIFICATION ALERT SIMULATOR -->
+  <div id="ownerAlertToast" class="fixed top-6 right-6 z-50 max-w-sm bg-stone-900 border-2 border-emerald-500 text-white p-4 rounded-lg shadow-2xl transform translate-y-[-150%] transition-transform duration-500">
+    <div class="flex items-start gap-3">
+      <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="bell-ring" class="w-5 h-5 animate-pulse"></i>
+      </div>
+      <div class="flex-1 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-emerald-400 uppercase tracking-wider text-[10px]">🚨 ZOOMRIDEXX DISPATCH ALERT</span>
+          <button onclick="dismissAlert()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-3.5 h-3.5"></i></button>
+        </div>
+        <p class="font-semibold text-white mt-1" id="alertTitle">New Car Rental Booking Received!</p>
+        <div class="bg-black/60 p-2 rounded mt-1.5 font-mono text-[11px] text-slate-300" id="alertBody">
+          📱 <strong>Customer:</strong> Rahul Sharma (+91 91796 42928)<br>
+          🚙 <strong>Car:</strong> Thar Roxx (5-Door)<br>
+          ⏱️ <strong>Duration:</strong> 24 Hours<br>
+          💰 <strong>Total Rent:</strong> ₹5,000 (Ready to confirm)
+        </div>
+        <div class="mt-2 flex items-center gap-2">
+          <button class="bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded text-[10px] font-bold">Call Customer Now</button>
+          <span class="text-[10px] text-slate-400">Delivered in 1.4 seconds</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: Full Fleet Data & Booking Engine -->
+  <script>
+    // Complete 17-Car Official Fleet from image
+    const fleet = [
+      {
+        id: 'scorpio-n',
+        name: 'Scorpio N',
+        fuel: 'Diesel',
+        category: 'suv',
+        image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
+        r6: null,
+        r12: 2800,
+        r24: 4000,
+        seats: '7 Seater',
+        trans: 'Manual / Automatic'
+      },
+      {
+        id: 'scorpio-s11',
+        name: 'Scorpio S11',
+        fuel: 'Diesel',
+        category: 'suv',
+        image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
+        r6: null,
+        r12: 2800,
+        r24: 4000,
+        seats: '7 Seater',
+        trans: 'Manual'
+      },
+      {
+        id: 'thar',
+        name: 'Mahindra Thar (4x4)',
+        fuel: 'Diesel',
+        category: 'suv',
+        image: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=800&q=80',
+        r6: null,
+        r12: 2800,
+        r24: 4000,
+        seats: '4 Seater Hardtop',
+        trans: 'Manual / 4x4'
+      },
+      {
+        id: 'xuv-700',
+        name: 'Mahindra XUV 700',
+        fuel: 'Diesel',
+        category: 'suv',
+        image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80',
+        r6: null,
+        r12: 3500,
+        r24: 5000,
+        seats: '7 Seater Sunroof',
+        trans: 'Automatic'
+      },
+      {
+        id: 'thar-roxx',
+        name: 'Thar Roxx (5-Door)',
+        fuel: 'Diesel',
+        category: 'suv',
+        image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80',
+        r6: null,
+        r12: 3500,
+        r24: 5000,
+        seats: '5 Seater Panoramic',
+        trans: 'Automatic'
+      },
+      {
+        id: 'endeavour',
+        name: 'Ford Endeavour',
+        fuel: 'Diesel',
+        category: 'luxury',
+        image: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80',
+        r6: null,
+        r12: 6000,
+        r24: 10000,
+        isAsterisk: true,
+        seats: '7 Seater Full Size',
+        trans: 'Automatic 4x4'
+      },
+      {
+        id: 'fortuner',
+        name: 'Toyota Fortuner',
+        fuel: 'Diesel',
+        category: 'luxury',
+        image: 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80',
+        r6: null,
+        r12: 10000,
+        r24: 14000,
+        isAsterisk: true,
+        seats: '7 Seater VIP',
+        trans: 'Automatic 4x4'
+      },
+      {
+        id: 'ertiga',
+        name: 'Maruti Ertiga',
+        fuel: 'CNG',
+        category: 'economy',
+        image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
+        r6: 1000,
+        r12: 2200,
+        r24: 3000,
+        seats: '7 Seater',
+        trans: 'Manual / Eco CNG'
+      },
+      {
+        id: 'fronx',
+        name: 'Maruti Fronx',
+        fuel: 'Petrol',
+        category: 'sedan',
+        image: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80',
+        r6: 1000,
+        r12: 1200,
+        r24: 2100,
+        seats: '5 Seater Turbo',
+        trans: 'Manual'
+      },
+      {
+        id: 'dzire',
+        name: 'Maruti Dzire',
+        fuel: 'Petrol/CNG/Diesel',
+        category: 'sedan',
+        image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
+        r6: 1000,
+        r12: 1200,
+        r24: 2100,
+        seats: '5 Seater Sedan',
+        trans: 'Manual'
+      },
+      {
+        id: 'baleno',
+        name: 'Maruti Baleno',
+        fuel: 'CNG/Diesel',
+        category: 'economy',
+        image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80',
+        r6: 1000,
+        r12: 1500,
+        r24: 2400,
+        seats: '5 Seater Premium',
+        trans: 'Manual'
+      },
+      {
+        id: 'swift',
+        name: 'Maruti Swift',
+        fuel: 'CNG/Petrol',
+        category: 'economy',
+        image: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80',
+        r6: 1000,
+        r12: 1500,
+        r24: 2400,
+        seats: '5 Seater Hatchback',
+        trans: 'Manual'
+      },
+      {
+        id: 'aura',
+        name: 'Hyundai Aura',
+        fuel: 'CNG',
+        category: 'sedan',
+        image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
+        r6: 1000,
+        r12: 1500,
+        r24: 2400,
+        seats: '5 Seater Compact Sedan',
+        trans: 'Manual'
+      },
+      {
+        id: 'brezza',
+        name: 'Maruti Brezza',
+        fuel: 'CNG',
+        category: 'sedan',
+        image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
+        r6: 1200,
+        r12: 1800,
+        r24: 2700,
+        seats: '5 Seater SUV',
+        trans: 'Manual'
+      },
+      {
+        id: 'creta',
+        name: 'Hyundai Creta',
+        fuel: 'Petrol/Diesel',
+        category: 'suv',
+        image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80',
+        r6: 1200,
+        r12: 1800,
+        r24: 2700,
+        seats: '5 Seater Panoramic',
+        trans: 'Manual / Automatic'
+      },
+      {
+        id: 'verna',
+        name: 'Hyundai Verna',
+        fuel: 'Petrol/Diesel',
+        category: 'sedan',
+        image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80',
+        r6: 1500,
+        r12: 2200,
+        r24: 3000,
+        seats: '5 Seater Luxury Sedan',
+        trans: 'Turbo Automatic'
+      },
+      {
+        id: 'venue',
+        name: 'Hyundai Venue',
+        fuel: 'Petrol',
+        category: 'sedan',
+        image: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80',
+        r6: 1500,
+        r12: 2200,
+        r24: 3000,
+        seats: '5 Seater Compact SUV',
+        trans: 'Manual'
+      }
+    ];
+
+    // Hero Spotlight Vehicles
+    const heroFeaturedVehicles = {
+      'thar-roxx': {
+        name: 'Mahindra Thar Roxx 4x4',
+        tagline: '5-Door Flagship Off-Roader',
+        badge: '🔥 MOST POPULAR 4x4',
+        badgeColor: 'border-zoomGold-500/40 text-zoomGold-400 bg-zoomGold-500/10',
+        image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1200&q=80',
+        specs: 'Diesel • 5 Seater • Panoramic Sunroof • Auto 4x4',
+        p12: '₹3,500',
+        p24: '₹5,000',
+        basePrice: 5000,
+        carRef: 'Thar Roxx (5-Door)'
+      },
+      'fortuner': {
+        name: 'Toyota Fortuner VIP 4x4',
+        tagline: 'Undisputed King of Highways',
+        badge: '👑 VIP LUXURY',
+        badgeColor: 'border-purple-500/40 text-purple-400 bg-purple-500/10',
+        image: 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1200&q=80',
+        specs: 'Diesel • 7 Seater • Automatic • Chauffeur Available',
+        p12: '₹10,000',
+        p24: '₹14,000*',
+        basePrice: 14000,
+        carRef: 'Toyota Fortuner'
+      },
+      'scorpio-n': {
+        name: 'Mahindra Scorpio N (Big Daddy)',
+        tagline: 'Ultimate Power & Command',
+        badge: '⚡ BESTSELLER SUV',
+        badgeColor: 'border-zoomBlue-500/40 text-zoomBlue-400 bg-zoomBlue-500/10',
+        image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80',
+        specs: 'Diesel • 7 Seater • Manual / Auto • AC Chill',
+        p12: '₹2,800',
+        p24: '₹4,000',
+        basePrice: 4000,
+        carRef: 'Scorpio N'
+      },
+      'swift': {
+        name: 'Maruti Swift / Baleno CNG',
+        tagline: 'Maximum Mileage & City Comfort',
+        badge: '⛽ BUDGET & MILEAGE KING',
+        badgeColor: 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10',
+        image: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80',
+        specs: 'CNG / Petrol • 5 Seater • Starting ₹1,000/-',
+        p12: '₹1,500',
+        p24: '₹2,400',
+        basePrice: 2400,
+        carRef: 'Maruti Swift'
+      }
+    };
+
+    let currentDuration = '24h';
+    let currentCategory = 'all';
+    let currentSearchQuery = '';
+
+    function renderFleet() {
+      const container = document.getElementById('fleetGrid');
+      container.innerHTML = '';
+
+      const filtered = fleet.filter(car => {
+        const matchesCat = (currentCategory === 'all' || car.category === currentCategory);
+        const q = currentSearchQuery.toLowerCase();
+        const matchesSearch = !currentSearchQuery || 
+          car.name.toLowerCase().includes(q) || 
+          car.fuel.toLowerCase().includes(q) ||
+          car.category.toLowerCase().includes(q);
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-12 glass-card rounded-xl">
+            <p class="text-slate-400 text-sm">No cars found matching "${currentSearchQuery}". Try clearing search or selecting another category.</p>
+            <button onclick="clearSearch()" class="mt-3 px-4 py-1.5 bg-zoomBlue-500 text-black text-xs font-bold rounded">Show All Cars</button>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      filtered.forEach(car => {
+        let highlightedPrice = '';
+        let durationLabel = '';
+
+        if (currentDuration === '6h') {
+          highlightedPrice = car.r6 ? `₹${car.r6.toLocaleString('en-IN')}/-` : '12h min.';
+          durationLabel = '6 Hours Package';
+        } else if (currentDuration === '12h') {
+          highlightedPrice = `₹${car.r12.toLocaleString('en-IN')}/-`;
+          durationLabel = '12 Hours Package';
+        } else {
+          highlightedPrice = `₹${car.r24.toLocaleString('en-IN')}/-${car.isAsterisk ? '*' : ''}`;
+          durationLabel = '24 Hours (Full Day)';
+        }
+
+        const card = document.createElement('div');
+        card.className = "glass-card rounded-xl overflow-hidden border border-slate-800 hover:border-zoomBlue-500/60 transition duration-500 group flex flex-col justify-between";
+        card.innerHTML = `
+          <div>
+            <div class="h-52 bg-black/60 relative overflow-hidden">
+              <img src="${car.image}" alt="${car.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+              <span class="absolute top-3 left-3 bg-black/80 text-zoomBlue-400 border border-zoomBlue-500/30 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">
+                ${car.fuel}
+              </span>
+              <span class="absolute top-3 right-3 bg-zoomDark-900/90 text-slate-300 text-[10px] font-semibold px-2 py-1 rounded">
+                ${car.seats}
+              </span>
+            </div>
+
+            <div class="p-5">
+              <div class="flex items-center justify-between">
+                <h3 class="font-heading text-xl font-bold text-white group-hover:text-zoomBlue-400 transition">${car.name}</h3>
+                <span class="text-[10px] text-slate-500 font-mono">${car.trans}</span>
+              </div>
+
+              <!-- Price Box -->
+              <div class="mt-4 p-3 bg-black/50 rounded-lg border border-slate-800/80 flex items-baseline justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 uppercase font-semibold">${durationLabel}</span>
+                  <div class="text-2xl font-heading font-extrabold text-zoomGold-400">${highlightedPrice}</div>
+                </div>
+                <div class="text-right text-[10px] text-slate-500 font-medium">
+                  <div>6h: ${car.r6 ? '₹' + car.r6 : '-'}</div>
+                  <div>12h: ₹${car.r12}</div>
+                  <div>24h: ₹${car.r24}${car.isAsterisk ? '*' : ''}</div>
+                </div>
+              </div>
+
+              <div class="mt-3 flex items-center gap-3 text-[11px] text-slate-400">
+                <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Sanitized</span>
+                <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> AC Chill</span>
+                <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Fastag Ready</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-5 pt-0 grid grid-cols-2 gap-2 mt-4">
+            <button onclick="openBookingModal('${car.name}', ${car.r24})" class="w-full py-2.5 bg-zoomDark-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider rounded transition border border-slate-700">
+              Quick Book
+            </button>
+            <a href="https://wa.me/919179642928?text=Hi%20ZoomRideXX,%20I%20want%20to%20rent%20${encodeURIComponent(car.name)}%20(${car.fuel})%20for%20${currentDuration}.%20Rate:%20${encodeURIComponent(highlightedPrice)}.%20Please%20confirm." target="_blank" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-black font-bold text-xs uppercase tracking-wider rounded transition flex items-center justify-center gap-1.5 shadow">
+              <i data-lucide="message-circle" class="w-3.5 h-3.5 fill-black text-transparent"></i> WhatsApp
+            </a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+
+    function setDuration(dur) {
+      currentDuration = dur;
+      ['24', '12', '6'].forEach(d => {
+        const btn = document.getElementById('btn-dur-' + d);
+        if (d + 'h' === dur) {
+          btn.className = "px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider bg-zoomBlue-500 text-black shadow transition";
+        } else {
+          btn.className = "px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition";
+        }
+      });
+      renderFleet();
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      ['all', 'suv', 'luxury', 'sedan', 'economy'].forEach(c => {
+        const btn = document.getElementById('cat-' + c);
+        if (btn) {
+          if (c === cat) {
+            btn.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-zoomBlue-500 text-black shadow";
+          } else {
+            btn.className = "px-4 py-1.5 rounded-full text-xs font-semibold bg-zoomDark-900 text-slate-400 border border-slate-800 hover:text-white";
+          }
+        }
+      });
+      renderFleet();
+    }
+
+    function handleFleetSearch(e) {
+      currentSearchQuery = e.target.value.trim();
+      renderFleet();
+    }
+
+    function clearSearch() {
+      currentSearchQuery = '';
+      const input = document.getElementById('fleetSearchInput');
+      if (input) input.value = '';
+      currentCategory = 'all';
+      filterCategory('all');
+    }
+
+    // Hero Interactive Spotlight Selector
+    function selectHeroCar(key) {
+      const data = heroFeaturedVehicles[key];
+      if (!data) return;
+
+      const imgEl = document.getElementById('heroCarImage');
+      const nameEl = document.getElementById('heroCarName');
+      const tagEl = document.getElementById('heroCarTagline');
+      const badgeEl = document.getElementById('heroCarBadge');
+      const specsEl = document.getElementById('heroCarSpecs');
+      const price12El = document.getElementById('heroCarPrice12');
+      const price24El = document.getElementById('heroCarPrice24');
+      const bookBtn = document.getElementById('heroCarBookBtn');
+      const waBtn = document.getElementById('heroCarWaBtn');
+
+      imgEl.style.opacity = '0.3';
+      setTimeout(() => {
+        imgEl.src = data.image;
+        imgEl.style.opacity = '1';
+      }, 150);
+
+      nameEl.innerText = data.name;
+      tagEl.innerText = data.tagline;
+      badgeEl.className = `text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded border backdrop-blur-md ${data.badgeColor}`;
+      badgeEl.innerText = data.badge;
+      specsEl.innerText = data.specs;
+      price12El.innerText = data.p12;
+      price24El.innerText = data.p24;
+
+      bookBtn.setAttribute('onclick', `openBookingModal('${data.carRef}', ${data.basePrice})`);
+      waBtn.setAttribute('href', `https://wa.me/919179642928?text=Hi%20ZoomRideXX,%20I%20want%20to%20reserve%20${encodeURIComponent(data.name)}.%20Please%20share%20availability.`);
+
+      ['thar-roxx', 'fortuner', 'scorpio-n', 'swift'].forEach(k => {
+        const pill = document.getElementById('hero-pill-' + k);
+        if (pill) {
+          if (k === key) {
+            pill.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-zoomBlue-500 text-black shadow transition whitespace-nowrap";
+          } else {
+            pill.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-zoomDark-900 border border-slate-800 text-slate-400 hover:text-white transition whitespace-nowrap";
+          }
+        }
+      });
+    }
+
+    // Hero Search Bar Execution
+    function executeHeroSearch() {
+      const dur = document.getElementById('heroSearchDuration').value;
+      const cat = document.getElementById('heroSearchCategory').value;
+
+      setDuration(dur);
+      filterCategory(cat);
+
+      document.getElementById('fleet').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Modal Control
+    function openBookingModal(carName, basePrice = 3000) {
+      document.getElementById('modalSelectedCar').value = carName;
+      document.getElementById('modalCarTitle').innerText = carName;
+      document.getElementById('modalPriceDisplay').innerText = `₹${basePrice.toLocaleString('en-IN')}/-`;
+      document.getElementById('bookingModal').classList.remove('hidden');
+      document.getElementById('bookingModal').classList.add('flex');
+    }
+
+    function closeBookingModal() {
+      document.getElementById('bookingModal').classList.add('hidden');
+      document.getElementById('bookingModal').classList.remove('flex');
+    }
+
+    function updateModalPrice() {
+      const carName = document.getElementById('modalSelectedCar').value;
+      const dur = document.getElementById('modalDuration').value;
+      const car = fleet.find(c => c.name === carName) || fleet[0];
+
+      let price = car.r24;
+      if (dur === '6h') price = car.r6 || car.r12;
+      else if (dur === '12h') price = car.r12;
+      else if (dur === '24h') price = car.r24;
+      else if (dur === '2d') price = car.r24 * 2;
+      else if (dur === '3d') price = car.r24 * 3;
+
+      document.getElementById('modalPriceDisplay').innerText = `₹${price.toLocaleString('en-IN')}/-`;
+    }
+
+    function handleModalSubmit(e) {
+      e.preventDefault();
+      const car = document.getElementById('modalSelectedCar').value;
+      const name = document.getElementById('custName').value;
+      const phone = document.getElementById('custPhone').value;
+      const dur = document.getElementById('modalDuration').value;
+      const type = document.getElementById('modalType').value;
+      const date = document.getElementById('custDate').value;
+      const time = document.getElementById('custTime').value;
+
+      closeBookingModal();
+      simulateBookingAlert(`${name} (${phone}) booked ${car} (${dur}, ${type}) on ${date} at ${time}`);
+
+      const waText = `Hi ZoomRideXX, my name is ${name}. I want to confirm booking for ${car} (${type}) for ${dur} on ${date} at ${time}. Please confirm keys handover.`;
+      window.open(`https://wa.me/919179642928?text=${encodeURIComponent(waText)}`, '_blank');
+    }
+
+    // AI Chat Control
+    let isChatOpen = false;
+    function toggleAgentChat() {
+      const drawer = document.getElementById('agentChatDrawer');
+      isChatOpen = !isChatOpen;
+      if (isChatOpen) drawer.classList.remove('translate-x-full');
+      else drawer.classList.add('translate-x-full');
+    }
+
+    function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      if (!input.value.trim()) return;
+      handleUserPrompt(input.value.trim());
+      input.value = '';
+    }
+
+    function handleUserPrompt(userText) {
+      const chat = document.getElementById('chatMessages');
+      chat.innerHTML += `
+        <div class="flex justify-end"><div class="bg-zoomBlue-500 text-black p-2.5 rounded-xl rounded-tr-none font-bold">${userText}</div></div>
+      `;
+      chat.scrollTop = chat.scrollHeight;
+
+      setTimeout(() => {
+        let reply = '';
+        const lower = userText.toLowerCase();
+
+        if (lower.includes('thar') || lower.includes('roxx') || lower.includes('4x4')) {
+          reply = `
+            <p>Our <strong>Mahindra Thar 4x4 (Diesel)</strong> and brand-new <strong>Thar Roxx (5-Door Diesel)</strong> are ready for self-drive! 🚙</p>
+            <p class="mt-2 text-slate-300">• <strong>Thar 4x4:</strong> ₹2,800 (12h) | ₹4,000 (24h)</p>
+            <p class="text-slate-300">• <strong>Thar Roxx:</strong> ₹3,500 (12h) | ₹5,000 (24h)</p>
+            <p class="mt-2 text-zoomGold-400 font-semibold">Please enter your WhatsApp details below to lock your date & receive our security deposit guidelines.</p>
+          `;
+        } else if (lower.includes('fortuner') || lower.includes('endeavour') || lower.includes('luxury')) {
+          reply = `
+            <p>For VIP outstation & weddings, our flagship full-size SUVs are unmatched: ✨</p>
+            <p class="mt-2 text-slate-300">• <strong>Toyota Fortuner 4x4:</strong> ₹10,000 (12h) | ₹14,000 (24h)</p>
+            <p class="text-slate-300">• <strong>Ford Endeavour:</strong> ₹6,000 (12h) | ₹10,000 (24h)</p>
+            <p class="mt-2 text-zoomGold-400 font-semibold">Available with or without professional chauffeur. Leave your contact below for reservation.</p>
+          `;
+        } else if (lower.includes('swift') || lower.includes('baleno') || lower.includes('cng') || lower.includes('ertiga')) {
+          reply = `
+            <p>Looking for super fuel-efficient budget rides? ⛽</p>
+            <p class="mt-2 text-slate-300">• <strong>Swift / Baleno (CNG):</strong> ₹1,000 (6h) | ₹1,500 (12h) | ₹2,400 (24h)</p>
+            <p class="text-slate-300">• <strong>Ertiga 7-Seater (CNG):</strong> ₹1,000 (6h) | ₹2,200 (12h) | ₹3,000 (24h)</p>
+            <p class="mt-2 text-zoomGold-400 font-semibold">Leave your phone number below for immediate pickup at our hub.</p>
+          `;
+        } else if (lower.includes('deposit') || lower.includes('document') || lower.includes('license')) {
+          reply = `
+            <p><strong>Self-Drive Verification is 100% Digital & Fast:</strong> 📄</p>
+            <p class="mt-2 text-slate-300">1. Original Driving License (min. 1 year old) + Aadhaar Card.</p>
+            <p class="text-slate-300">2. Refundable Security Deposit (₹3,000 for hatchbacks, ₹5,000 for Thar/Scorpio, ₹10,000 for Fortuner).</p>
+            <p class="text-slate-300">3. Deposit refunded via UPI immediately upon return inspection.</p>
+          `;
+        } else {
+          reply = `
+            <p>Welcome to ZoomRideXX! We have 17+ sanitized vehicles available for 6-hour, 12-hour, or 24-hour rentals starting at ₹1,000.</p>
+            <p class="mt-2 text-zoomGold-400">Which date and vehicle can I reserve for you?</p>
+          `;
+        }
+
+        chat.innerHTML += `
+          <div class="bg-zoomDark-900 border border-slate-800 p-3 rounded-2xl rounded-tl-none text-slate-200 mt-2">${reply}</div>
+        `;
+        chat.scrollTop = chat.scrollHeight;
+      }, 500);
+    }
+
+    function submitAgentLead(e) {
+      e.preventDefault();
+      const name = document.getElementById('aiName').value;
+      const phone = document.getElementById('aiPhone').value;
+
+      simulateBookingAlert(`${name} (${phone}) requested WhatsApp Booking`);
+      alert(`Thank you, ${name}! Your booking inquiry has been dispatched to ZoomRideXX fleet manager. We will connect on WhatsApp (${phone}) in 2 minutes.`);
+      toggleAgentChat();
+    }
+
+    // Owner Notification Toast
+    function simulateBookingAlert(details) {
+      const toast = document.getElementById('ownerAlertToast');
+      document.getElementById('alertBody').innerHTML = `
+        📱 <strong>Lead:</strong> ${details}<br>
+        🚗 <strong>Fleet Hotline:</strong> 9179642928 / 9516108857<br>
+        ⚡ <strong>Status:</strong> Phone Verified • Fast Closing
+      `;
+      toast.classList.remove('translate-y-[-150%]');
+      toast.classList.add('translate-y-0');
+
+      setTimeout(() => {
+        dismissAlert();
+      }, 9000);
+    }
+
+    function dismissAlert() {
+      const toast = document.getElementById('ownerAlertToast');
+      toast.classList.remove('translate-y-0');
+      toast.classList.add('translate-y-[-150%]');
+    }
+
+    // Initialize
+    window.onload = function() {
+      renderFleet();
+    };
+  </script>
+</body>
+</html>
